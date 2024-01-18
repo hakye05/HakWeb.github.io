@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        .section1, .section2, .section3 {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+    <title>Ahem?</title>
+</head>
+<body>
+    <div class="container">
+        <div class="section1">
+            <div class="gif_container">
+                <img src="gifs/cin-good-morning.gif" alt="Cute animated illustration">
+            </div>
+            <div>
+                <header class="header_text">my sweetie!</header>
+                <header class="header_text smaller"><a href="#" onclick="fadeInAndToggle12()">Wanna see something?</a></header>
+            </div>
+        </div>
+
+        <div class="section2" style="display: none;">
+            <div>
+                <header class="header_text small secondSmall">Ochii tăi sunt albaştri şi gri,</header>
+                <header class="header_text smaller secondSmaller"> What's your WeChat?</header>
+                <!--care este WeChat-ul tău?-->
+            </div>
+            <div class="gif_container" style="margin-left: -12px;">
+                <img src="gifs/i-love-you-ana.gif" alt="Cute animated illustration">
+            </div>
+            <div>
+                <header class="header_text" style="margin-top: 40px;">Ce superba. <a href="#" onclick="fadeInAndToggle23()">Mwah!</a></header>
+            </div>
+        </div>
+
+        <div class="section3" style="display: none;">
+            <div>
+                <header class="header_text" style="font-size: 30px;">Do you wanna be with me Forever?</header>
+            </div>
+            <div class="gif_container">
+                <img src="gifs/cin-ice.gif" alt="Cute animated illustration" class="lastGif">
+            </div>
+            <div class="buttons">
+                <button class="btn" id="yesButton" onclick="changePrep()">Yes</button>
+                <button class="btn" id="noButton" onmouseover="fadeOutAndMoveButton()" onclick="fadeOutAndMoveButton()">No</button>
+            </div>
+        </div>
+        
+        <script>
+            function changePage() {
+                window.location.href = "yippie.html";
+            }
+
+            function fadeOut(element, callback) {
+                element.style.opacity = 0;
+                setTimeout(callback, 500);
+            }
+
+            function fadeIn(element) {
+                element.style.display = 'block';
+                element.style.opacity = 0;
+                setTimeout(() => {
+                    element.style.opacity = 1;
+                }, 200);
+            }
+
+            function fadeOutAndMoveButton() {
+                var noButton = document.getElementById('noButton');
+                noButton.style.color = 'white';
+                fadeOut(noButton, moveButton);
+            }
+
+            function moveButton() {
+                var restrictedAreaWidth = 380;
+                var restrictedAreaHeight = 800;
+                var x = Math.random() * (- restrictedAreaWidth + document.getElementById('noButton').offsetWidth);
+                var y = Math.random() * (restrictedAreaHeight - document.getElementById('noButton').offsetHeight);
+
+                document.getElementById('noButton').style.left = `${x}px`;
+                document.getElementById('noButton').style.top = `${y}px`;
+                fadeIn(document.getElementById('noButton'));
+            }
+
+            function fadeInAndToggle12() {
+                var section1 = document.querySelector('.section1');
+                var section2 = document.querySelector('.section2');
+
+                fadeOut(section1, function() {
+                    section1.style.display = 'none';
+                    fadeIn(section2);
+                });
+            }
+
+            function fadeInAndToggle23() {
+                var section2 = document.querySelector('.section2');
+                var section3 = document.querySelector('.section3');
+
+                fadeOut(section2, function() {
+                    section2.style.display = 'none';
+                    fadeIn(section3);
+                });
+            }
+
+            function changePrep() {
+                var section3 = document.querySelector('.section3');
+
+                fadeOut(section3, function() {
+                    section3.style.display = 'none';
+
+                    setTimeout(() => {
+                    changePage();
+                }, 300);
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
